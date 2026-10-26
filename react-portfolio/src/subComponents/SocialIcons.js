@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { Github, Twitter, LinkedIn } from "../components/AllSvgs";
-import { DarkTheme } from "../components/Themes";
+import { DarkTheme, futuristicTheme } from "../components/Themes";
 import { motion } from "framer-motion";
 import { profile } from "../data/profile";
 
@@ -12,28 +12,44 @@ const Icons = styled.div`
   align-items: center;
   position: fixed;
   bottom: 0;
-  left: 2rem;
-  z-index: 3;
+  left: 1.25rem;
+  z-index: 40;
   & > *:not(:last-child) {
     margin: 0.5rem 0;
+  }
+  @media (max-width: 640px) {
+    left: 0.5rem;
+    transform: scale(0.9);
   }
 `;
 
 const Line = styled(motion.span)`
   width: 2px;
-  height: 8rem;
-  background-color: ${(props) =>
-    props.color === "dark" ? DarkTheme.text : DarkTheme.body};
+  height: 5rem;
+  background: linear-gradient(
+    transparent,
+    ${(p) => p.$color},
+    transparent
+  );
 `;
 
-const iconFill = (theme) =>
-  theme === "dark" ? DarkTheme.text : DarkTheme.body;
+const iconFill = (theme) => {
+  if (theme === "futuristic") return futuristicTheme.accent;
+  if (theme === "dark") return DarkTheme.text;
+  return DarkTheme.body;
+};
+
+const lineColor = (theme) => {
+  if (theme === "futuristic") return futuristicTheme.accent;
+  if (theme === "dark") return DarkTheme.text;
+  return DarkTheme.body;
+};
 
 const SocialLink = ({ href, delay, theme, children }) => (
   <motion.div
     initial={{ transform: "scale(0)" }}
-    animate={{ scale: [0, 1, 1.5, 1] }}
-    transition={{ type: "spring", duration: 1, delay }}
+    animate={{ scale: 1 }}
+    transition={{ type: "spring", duration: 0.6, delay }}
   >
     <NavLink
       style={{ color: "inherit" }}
@@ -52,20 +68,20 @@ const SocialIcons = (props) => {
 
   return (
     <Icons>
-      <SocialLink href={linkedin} delay={1.1} theme={props.theme}>
-        <LinkedIn width={25} height={25} fill={fill} />
+      <SocialLink href={linkedin} delay={0.2} theme={props.theme}>
+        <LinkedIn width={22} height={22} fill={fill} />
       </SocialLink>
-      <SocialLink href={github} delay={1.2} theme={props.theme}>
-        <Github width={25} height={25} fill={fill} />
+      <SocialLink href={github} delay={0.3} theme={props.theme}>
+        <Github width={22} height={22} fill={fill} />
       </SocialLink>
-      <SocialLink href={twitter} delay={1.4} theme={props.theme}>
-        <Twitter width={25} height={25} fill={fill} />
+      <SocialLink href={twitter} delay={0.4} theme={props.theme}>
+        <Twitter width={22} height={22} fill={fill} />
       </SocialLink>
       <Line
-        color={props.theme}
+        $color={lineColor(props.theme)}
         initial={{ height: 0 }}
-        animate={{ height: "8rem" }}
-        transition={{ type: "spring", duration: 1, delay: 0.8 }}
+        animate={{ height: "5rem" }}
+        transition={{ type: "spring", duration: 0.8, delay: 0.1 }}
       />
     </Icons>
   );

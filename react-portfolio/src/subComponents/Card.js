@@ -4,115 +4,98 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { Github } from '../components/AllSvgs';
 
-
-
 const Box = styled(motion.li)`
-width: 16rem;
-height: 40vh;
-background-color: ${props => props.theme.text};
-color:${props => props.theme.body};
-padding: 1.5rem 2rem;
-margin-right: 8rem;
-border-radius: 0 50px 0 50px;
+width: 100%;
+min-height: 280px;
+background: ${props => props.theme.glass};
+color: ${props => props.theme.text};
+padding: 1.5rem;
+border-radius: 12px;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
-border: 1px solid ${props => props.theme.body};
-transition: all 0.2s ease;
+border: 1px solid ${props => props.theme.glassBorder};
+transition: all 0.25s ease;
+list-style: none;
 &:hover{
-background-color: ${props => props.theme.body};
-color:${props => props.theme.text};
-border: 1px solid ${props => props.theme.text};
+  border-color: ${props => props.theme.accent};
+  box-shadow: 0 0 28px rgba(0, 229, 255, 0.12);
 }
 `
 const Title = styled.h2`
-font-size: calc(1em + 0.5vw);
+font-size: 1.15rem;
+color: ${props => props.theme.text};
 `
 
-const Description = styled.h2`
-font-size: calc(0.8em + 0.3vw);
+const Description = styled.p`
+font-size: 0.9rem;
 font-family: 'Karla',sans-serif;
-font-weight: 500;
+font-weight: 400;
+line-height: 1.5;
+color: ${props => props.theme.muted};
 `
 const Tags = styled.div`
-border-top: 2px solid ${props =>props.theme.body};
-padding-top: 0.5rem;
+border-top: 1px solid ${props =>props.theme.glassBorder};
+padding-top: 0.75rem;
 display:flex;
 flex-wrap:wrap;
-${Box}:hover &{
-border-top: 2px solid ${props =>props.theme.text};
-}
+gap: 0.35rem;
 `
 const Tag = styled.span`
-margin-right:1rem;
-font-size:calc(0.8em + 0.3vw);
+font-size: 0.75rem;
+font-family: ${props => props.theme.mono};
+color: ${props => props.theme.accent2};
 `
 
 const Footer = styled.footer`
 display: flex;
 justify-content: space-between;
+align-items: center;
+margin-top: 0.75rem;
 `
 
 const Link = styled(NavLink)`
-background-color: ${props =>props.theme.body};
-color: ${props =>props.theme.text};
+font-family: ${props =>props.theme.mono};
+font-size: 0.75rem;
+color: ${props =>props.theme.accent};
 text-decoration: none;
-padding:0.5rem calc(2rem + 2vw);
-border-radius: 0 0 0 50px;
-font-size:calc(1em + 0.5vw);
-${Box}:hover &{
-    background-color: ${props =>props.theme.text};
-    color: ${props =>props.theme.body};
+padding: 0.4rem 0.75rem;
+border: 1px solid ${props => props.theme.glassBorder};
+border-radius: 6px;
+&:hover {
+  background: rgba(0, 229, 255, 0.1);
 }
 `
 
 const Git = styled(NavLink)`
-color: inherit;
+color: ${props => props.theme.accent};
 text-decoration: none;
-${Box}:hover &{
-    &>*{
-        fill:${props =>props.theme.text};
-    }
-}
 `
 
-// Framer motion configuration
 const Item = {
-    hidden:{
-        scale:0
-    },
+    hidden:{ scale:0.95, opacity: 0 },
     show:{
         scale:1,
-        transition: {
-            type: 'spring',
-            duration: 0.5
-        }
+        opacity: 1,
+        transition: { type: 'spring', duration: 0.45 }
     }
 }
 
 const Card = (props) => {
-
     const {id, name, description, tags, demo, github} = props.data;
-
     return (
-        <Box key={id} variants={Item}>
+        <Box key={id} variants={Item} initial="hidden" animate="show">
+            <div>
             <Title>{name}</Title>
-            <Description>
-                {description}
-            </Description>
+            <Description>{description}</Description>
+            </div>
             <Tags>
-            {
-                    tags.map((t,id) => {
-                        return <Tag key={id}>#{t}</Tag>
-                    })
-                }
+                {tags.map((t, tid) => <Tag key={tid}>#{t}</Tag>)}
             </Tags>
             <Footer>
-                <Link to={{pathname: `${demo}`}} target="_blank">
-                    Visit
-                </Link>
+                <Link to={{pathname: `${demo}`}} target="_blank">Visit</Link>
                 <Git to={{pathname: `${github}`}} target="_blank">
-                    <Github width={30} height={30} />
+                    <Github width={28} height={28} fill="currentColor" />
                 </Git>
             </Footer>
         </Box>

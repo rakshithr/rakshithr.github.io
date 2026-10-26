@@ -1,118 +1,64 @@
 import React from 'react'
-import styled, { ThemeProvider } from 'styled-components'
-import { lightTheme } from './Themes';
-import { Develope } from './AllSvgs';
-import LogoComponent from '../subComponents/LogoComponent';
-import SocialIcons from '../subComponents/SocialIcons';
-import PowerButton from '../subComponents/PowerButton';
-import ParticleComponent from '../subComponents/ParticleComponent';
-import BigTitle from '../subComponents/BigTitlte'
+import styled from 'styled-components'
+import FuturisticShell from './futuristic/FuturisticShell'
 import { profile } from '../data/profile'
 
-const Box = styled.div`
-background-color: ${props => props.theme.body};
-width: 100vw;
-height:100vh;
-position: relative;
-display: flex;
-justify-content: space-evenly;
-align-items: center;
+const PageTitle = styled.h1`
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  margin-bottom: 0.5rem;
 `
 
-const Main = styled.div`
-border: 2px solid ${props => props.theme.text};
-color: ${props => props.theme.text};
-background-color: ${props => props.theme.body};
-padding: 2rem;
-width: min(36vw, 520px);
-margin-top: 20%;
-height: auto;
-max-height: 75vh;
-overflow-y: auto;
-z-index:3;
-line-height: 1.5;
-cursor: pointer;
-font-family: 'Ubuntu Mono',monospace;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-&:hover{
-    color: ${props => props.theme.body};
-    background-color: ${props => props.theme.text};
-}
+const Sub = styled.p`
+  color: ${(p) => p.theme.muted};
+  margin-bottom: 2rem;
+  max-width: 40rem;
 `
 
-const Title = styled.h2`
-display: flex;
-justify-content: center;
-align-items: center;
-font-size: calc(1em + 1vw);
-${Main}:hover &{
-    &>*{
-        fill:${props => props.theme.body};
-    }
-}
-&>*:first-child{
-margin-right: 1rem;
-}
+const Grid = styled.div`
+  display: grid;
+  gap: 1rem;
 `
 
-const Description = styled.div`
-color: ${props => props.theme.text};
-font-size: calc(0.6em + 1vw);
-padding: 0.5rem 0;
-${Main}:hover &{
-        color:${props => props.theme.body};
-}
-strong{
-    margin-bottom: 1rem;
+const Card = styled.div`
+  border: 1px solid ${(p) => p.theme.glassBorder};
+  background: ${(p) => p.theme.glass};
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  h3 {
+    font-family: ${(p) => p.theme.mono};
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-}
-ul,p{
-    margin-left: 2rem;
-}
+    color: ${(p) => p.theme.accent};
+    margin-bottom: 0.5rem;
+  }
+  p {
+    color: ${(p) => p.theme.muted};
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
 `
 
 const MySkillsPage = () => {
     const { skills } = profile;
     return (
-        <ThemeProvider theme={lightTheme}>
-<Box>
-
-<LogoComponent theme='light'/>
-<SocialIcons theme='light'/>
-<PowerButton />
-<ParticleComponent theme='light' />
-            <Main>
-<Title>
-    <Develope width={40} height={40} /> GenAI &amp; platform engineering
-</Title>
-<Description>
-{skills.intro}
-</Description>
-<Description>
-<strong>Skills</strong>
-<ul>
-    {skills.layers.map((layer) => (
-      <li key={layer.title}>
-        <strong>{layer.title}:</strong> {layer.items}
-      </li>
-    ))}
-</ul>
-</Description>
-<Description>
-<strong>Tools</strong>
-<p>{skills.tools}</p>
-</Description>
-
-            </Main>
-
-            <BigTitle text="SKILLS" top="80%" right="30%" />
-
-        </Box>
-
-        </ThemeProvider>
-        
+        <FuturisticShell>
+            <PageTitle>Systems</PageTitle>
+            <Sub>{skills.intro}</Sub>
+            <Grid>
+                {skills.layers.map((layer) => (
+                    <Card key={layer.title}>
+                        <h3>{layer.title}</h3>
+                        <p>{layer.items}</p>
+                    </Card>
+                ))}
+                <Card>
+                    <h3>Tools</h3>
+                    <p>{skills.tools}</p>
+                </Card>
+            </Grid>
+        </FuturisticShell>
     )
 }
 

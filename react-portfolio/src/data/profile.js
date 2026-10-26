@@ -49,7 +49,47 @@ export const profile = {
     "MA AI Vibe Coding Hackathon 2026 — global Bayer hackathon (AI insight workflows)",
     "Technical Lead at HCLTech — architected RAG, agents, and vector search on AWS",
   ],
+  thesis:
+    "The next wave of useful AI is won by orchestration and memory—not the flashiest chat UI.",
 };
+
+export const agentSteps = [
+  {
+    id: "observe",
+    label: "Observe",
+    code: "ingest_context",
+    detail:
+      "Capture user intent, session state, and enterprise constraints—the harness decides what the agent sees before any model call.",
+  },
+  {
+    id: "retrieve",
+    label: "Retrieve",
+    code: "rag_pipeline",
+    detail:
+      "Embedding search, vector stores, and reranking—grounding answers in your data at HCLTech-scale retrieval frameworks.",
+  },
+  {
+    id: "plan",
+    label: "Plan",
+    code: "orchestrate",
+    detail:
+      "Multi-agent routing, tool selection, and handoffs—translating business requirements into reliable GenAI workflows.",
+  },
+  {
+    id: "act",
+    label: "Act",
+    code: "tool_execute",
+    detail:
+      "Python & Node microservices on AWS—LLM capabilities integrated with APIs that ship to production, not slide decks.",
+  },
+  {
+    id: "evaluate",
+    label: "Evaluate",
+    code: "guardrails",
+    detail:
+      "Latency, cost, and quality checks on turn 20 and turn 200—systems that still behave like one mind after long sessions.",
+  },
+];
 
 export const experience = [
   {
