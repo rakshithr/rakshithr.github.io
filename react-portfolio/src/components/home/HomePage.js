@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import FuturisticShell from "../futuristic/FuturisticShell";
-import ProfileHologram from "../futuristic/ProfileHologram";
+import JarvisHero from "../futuristic/JarvisHero";
 import AgentLoop from "../futuristic/AgentLoop";
+import CareerAgent from "../agent/CareerAgent";
 import { profile } from "../../data/profile";
 
 const Hero = styled.div`
@@ -115,7 +116,15 @@ const ExploreLink = styled(Link)`
   }
 `;
 
-const HomePage = () => (
+const HomePage = () => {
+  useEffect(() => {
+    if (window.location.hash === "#career-agent") {
+      const el = document.getElementById("career-agent");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
+
+  return (
   <FuturisticShell wide>
     <Hero>
       <motion.div
@@ -130,12 +139,15 @@ const HomePage = () => (
         <Explore>
           <ExploreLink to="/experience">View experience →</ExploreLink>
           <ExploreLink to="/about">Full story →</ExploreLink>
+          <ExploreLink to="/#career-agent">Ask the agent →</ExploreLink>
         </Explore>
       </motion.div>
-      <ProfileHologram />
+      <JarvisHero />
     </Hero>
 
     <AgentLoop />
+
+    <CareerAgent />
 
     <HighlightGrid>
       {profile.highlights.map((h, i) => (
@@ -151,6 +163,7 @@ const HomePage = () => (
       ))}
     </HighlightGrid>
   </FuturisticShell>
-);
+  );
+};
 
 export default HomePage;

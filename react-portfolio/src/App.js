@@ -14,9 +14,9 @@ function App() {
 
   const location = useLocation();
 
-  return <>
-  <GlobalStyle />
+  return (
     <ThemeProvider theme={futuristicTheme}>
+      <GlobalStyle />
       <AnimatePresence exitBeforeEnter>
         <Switch location={location} key={location.pathname} >
           <Route exact path="/" component={HomePage} />
@@ -27,7 +27,7 @@ function App() {
         </Switch>
       </AnimatePresence>
     </ThemeProvider>
-    </>
+  )
 }
 
 export default App
