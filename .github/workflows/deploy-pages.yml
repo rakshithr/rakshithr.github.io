@@ -25,6 +25,8 @@ jobs:
 
       - name: Install and build
         working-directory: react-portfolio
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
         run: |
           npm ci --legacy-peer-deps
           npm run build
