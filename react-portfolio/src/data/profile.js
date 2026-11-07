@@ -1,6 +1,6 @@
 export const profile = {
   name: "Rakshith R",
-  headline: "GenAI Developer | AI Agent Architect",
+  headline: "Full-Stack Lead → GenAI & Agent Architecture",
   tagline:
     "I build agents and retrieval systems that reason, retrieve, and automate enterprise workflows.",
   email: "rakshith.atreays.r@gmail.com",
@@ -51,6 +51,42 @@ export const profile = {
   ],
   thesis:
     "The next wave of useful AI is won by orchestration and memory—not the flashiest chat UI.",
+  liquid: {
+    title: ["A liquid", "stack."],
+    sub: ["Human judgment.", "Agent speed."],
+    shapeLead: "Systems take the shape of your",
+    shapeWords: [
+      "RAG.",
+      "agents.",
+      "memory.",
+      "orchestration.",
+      "launch.",
+    ],
+    est: "2016",
+    marquees: [
+      [
+        "Production RAG",
+        "Multi-agent loops",
+        "Vector search",
+        "Enterprise microservices",
+        "Bayer Digital Hub",
+      ],
+      [
+        "Fewer demos",
+        "More memory",
+        "Clear evals",
+        "No toy chatbots",
+      ],
+    ],
+  },
+  /** Short lines cycled beside the portrait — the “profile speaks” moment */
+  voiceLines: [
+    "Technical Lead → Software Engineer · 10 years shipping to production",
+    "Bayer Digital Hub · GenAI & agent architecture",
+    "HCLTech · RAG, multi-agent orchestration, vector search on AWS",
+    "I design systems that still work on turn 200—not just in the demo",
+    "Ask the on-site agent anything about my career",
+  ],
 };
 
 export const agentSteps = [

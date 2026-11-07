@@ -15,7 +15,7 @@ const Bar = styled.nav`
   padding: 1rem 1.5rem;
   background: rgba(6, 10, 18, 0.75);
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(0, 229, 255, 0.12);
+  border-bottom: 1px solid rgba(242, 235, 227, 0.1);
 `;
 
 const Brand = styled(NavLink)`
@@ -36,35 +36,51 @@ const Links = styled.div`
   gap: 0.35rem 1rem;
   align-items: center;
   @media (max-width: 640px) {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     gap: 0.5rem;
   }
 `;
 
 const Link = styled(NavLink)`
-  font-family: ${(p) => p.theme.fontFamily};
-  font-size: 0.8rem;
+  font-family: ${(p) => p.theme.mono};
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
   color: ${(p) => p.theme.muted};
   text-decoration: none;
   transition: color 0.2s;
+  .num {
+    color: ${(p) => p.theme.magenta};
+    margin-right: 0.35rem;
+    font-size: 0.65rem;
+  }
   &.active,
   &:hover {
-    color: ${(p) => p.theme.accent};
+    color: ${(p) => p.theme.text};
   }
 `;
 
 const Cta = styled.a`
   font-family: ${(p) => p.theme.mono};
-  font-size: 0.7rem;
-  padding: 0.4rem 0.75rem;
-  border: 1px solid ${(p) => p.theme.glassBorder};
-  border-radius: 6px;
-  color: ${(p) => p.theme.accent};
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgba(244, 114, 182, 0.35);
+  border-radius: 999px;
+  color: ${(p) => p.theme.text};
   text-decoration: none;
   &:hover {
-    background: rgba(0, 229, 255, 0.1);
+    background: rgba(244, 114, 182, 0.12);
   }
 `;
+
+const nav = [
+  { to: "/", label: "Home", end: true, n: "01" },
+  { to: "/experience", label: "Work", n: "02" },
+  { to: "/projects", label: "Projects", n: "03" },
+  { to: "/about", label: "Studio", n: "04" },
+  { to: "/skills", label: "Systems", n: "05" },
+];
 
 const TopNav = () => (
   <Bar>
@@ -72,12 +88,13 @@ const TopNav = () => (
       {profile.name.split(" ")[0]}<span>.</span>R
     </Brand>
     <Links>
-      <Link to="/" exact>Home</Link>
-      <Link to="/experience">Work</Link>
-      <Link to="/projects">Projects</Link>
-      <Link to="/about">About</Link>
-      <Link to="/skills">Systems</Link>
-      <Cta href={`mailto:${profile.email}`}>Contact</Cta>
+      {nav.map((item) => (
+        <Link key={item.to} to={item.to} exact={item.end}>
+          <span className="num">{item.n}</span>
+          {item.label}
+        </Link>
+      ))}
+      <Cta href={`mailto:${profile.email}`}>Say hello</Cta>
     </Links>
   </Bar>
 );

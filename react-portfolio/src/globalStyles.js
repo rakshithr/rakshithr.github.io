@@ -25,8 +25,8 @@ body{
 }
 
 ::selection {
-    background: rgba(0, 229, 255, 0.35);
-    color: #fff;
+    background: rgba(232, 196, 168, 0.35);
+    color: #0a0908;
 }
 `
 

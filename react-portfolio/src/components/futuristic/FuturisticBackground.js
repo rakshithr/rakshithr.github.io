@@ -19,6 +19,11 @@ const Root = styled.div`
   z-index: 0;
   overflow: hidden;
   background: radial-gradient(
+      ellipse 80% 60% at 75% 35%,
+      rgba(244, 114, 182, 0.1),
+      transparent 50%
+    ),
+    radial-gradient(
       ellipse 120% 80% at 70% 20%,
       rgba(168, 85, 247, 0.12),
       transparent 50%
@@ -28,7 +33,7 @@ const Root = styled.div`
       rgba(0, 229, 255, 0.1),
       transparent 45%
     ),
-    linear-gradient(165deg, #04060c 0%, #0a1020 45%, #060a12 100%);
+    linear-gradient(165deg, #080706 0%, #0a0908 45%, #0c0b0a 100%);
 `;
 
 const Grid = styled.div`

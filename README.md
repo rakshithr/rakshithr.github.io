@@ -5,15 +5,44 @@ Personal portfolio — React 17, styled-components, Framer Motion.
 
 ## Local development
 
+**Easiest (from repo root):**
+
+```powershell
+.\scripts\dev.ps1
+```
+
+When the terminal shows `Compiled successfully!`, open **http://127.0.0.1:3000** (not `index.html` on disk, not `rakshithr.github.io` unless you deployed).
+
+**If dev shows a red compile screen** (stale server on :3000/:3001): close all terminals, run `.\scripts\dev.ps1` again — it kills old Node processes and clears webpack cache.
+
+**Fallback (always works after build):**
+
+```powershell
+.\scripts\preview-build.ps1
+```
+
+Then open **http://127.0.0.1:5050**
+
+Or manually:
+
 ```powershell
 cd react-portfolio
 npm install --legacy-peer-deps
-$env:NODE_OPTIONS="--openssl-legacy-provider"
-$env:BROWSER="none"
 npm start
 ```
 
-Open **http://localhost:3000**
+`npm start` / `npm run build` set OpenSSL legacy mode automatically (required on Node 18+ with CRA 4).
+
+### Errors or blank page?
+
+| Symptom | Fix |
+|---------|-----|
+| Red screen / `lucide-react` / `Github is not exported` | Old dev server still running. Run **`.\scripts\dev.ps1`** (it stops port 3000 and restarts). |
+| `Something is already running on port 3000` | Close other terminals or use **`.\scripts\dev.ps1`**. |
+| `craco` / `tailwindcss` not found | `cd react-portfolio` → **`npm install --legacy-peer-deps`** |
+| `digital envelope routines` | Use **`npm start`** from this repo (OpenSSL legacy is set in the script). |
+| Opened `index.html` from disk | Use **http://localhost:3000** after compile succeeds. |
+| Preview production build | `.\scripts\deploy.ps1` then `.\scripts\preview.ps1` → **http://localhost:5000** |
 
 ## Edit content
 

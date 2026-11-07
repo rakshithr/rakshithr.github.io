@@ -30,6 +30,7 @@ const Title = styled.h2`
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: ${(p) => p.theme.accent};
+  margin: 0;
 `;
 
 const Status = styled.span`

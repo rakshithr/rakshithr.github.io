@@ -1,13 +1,71 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --story-bg: #080706;
+  --story-surface: rgba(20, 18, 16, 0.65);
+  --story-text: #f2ebe3;
+  --story-muted: #8e8a85;
+  --story-cyan: #00e5ff;
+  --story-amber: #ff9e2c;
+  --story-emerald: #10b981;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@layer components {
+  .editorial-surface {
+    @apply rounded-2xl border border-white border-opacity-10;
+    background: var(--story-surface);
+    backdrop-filter: blur(14px);
+  }
+
+  .chapter-label {
+    @apply font-mono text-xs tracking-widest uppercase;
+    color: var(--story-amber);
+  }
+
+  .beam-accent {
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(0, 229, 255, 0.06) 48%,
+      rgba(255, 158, 44, 0.08) 52%,
+      transparent 60%
+    );
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 12px rgba(255, 158, 44, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(0, 229, 255, 0.45);
+  }
+}
+
+.agent-fab-glow {
+  animation: glow-pulse 2.5s ease-in-out infinite;
+}
+
+.chapter-title-reveal {
+  clip-path: inset(0 0 0 0);
 }

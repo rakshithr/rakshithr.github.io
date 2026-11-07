@@ -1,6 +1,6 @@
 import { Route, Switch, useLocation } from "react-router-dom"
 import { ThemeProvider } from "styled-components"
-import { futuristicTheme } from "./components/Themes"
+import { storyTheme } from "./components/Themes"
 import GlobalStyle from "./globalStyles"
 
 import HomePage from "./components/home/HomePage";
@@ -15,7 +15,7 @@ function App() {
   const location = useLocation();
 
   return (
-    <ThemeProvider theme={futuristicTheme}>
+    <ThemeProvider theme={storyTheme}>
       <GlobalStyle />
       <AnimatePresence exitBeforeEnter>
         <Switch location={location} key={location.pathname} >

@@ -16,18 +16,35 @@ export const DarkTheme = {
   bodyRgba: "0,0,0",
 };
 
-export const futuristicTheme = {
-  body: "#060a12",
-  text: "#e8f4ff",
-  muted: "#8ba3b8",
-  accent: "#00e5ff",
-  accent2: "#a855f7",
-  accentRgb: "0, 229, 255",
-  accent2Rgb: "168, 85, 247",
+/** Primary site theme — editorial scroll story (Tomo × dozfx) */
+export const storyTheme = {
+  body: "#0a0908",
+  text: "#f2ebe3",
+  muted: "#9a9189",
+  accent: "#e8c4a8",
+  accent2: "#c4b5fd",
+  beam: "#faf8f5",
+  accentRgb: "232, 196, 168",
+  accent2Rgb: "196, 181, 253",
   fontFamily: "'Space Grotesk', 'Source Sans Pro', sans-serif",
+  serif: "'Source Sans Pro', Georgia, serif",
   mono: "'JetBrains Mono', 'Ubuntu Mono', monospace",
-  bodyRgba: "6, 10, 18",
-  textRgba: "232, 244, 255",
-  glass: "rgba(12, 20, 36, 0.72)",
-  glassBorder: "rgba(0, 229, 255, 0.25)",
+  bodyRgba: "10, 9, 8",
+  textRgba: "242, 235, 227",
+  glass: "rgba(20, 18, 16, 0.65)",
+  glassBorder: "rgba(242, 235, 227, 0.12)",
+  sectionTints: [
+    "#0a0908",
+    "#0c0b0a",
+    "#0e0d0c",
+    "#10100e",
+    "#0b0c10",
+    "#0d0e12",
+    "#0a0908",
+    "#0c0b0a",
+    "#0a0908",
+  ],
 };
+
+/** @deprecated — kept for secondary routes until migrated */
+export const futuristicTheme = storyTheme;
